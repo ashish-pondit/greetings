@@ -23,14 +23,32 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+function local_greetings_get_greeting($user) {
+    if ($user == null) {
+        return get_string('greetinguser', 'local_greetings');
+    }
 
-$string['pluginname'] = 'Greetings';
-$string['greetinguser'] = 'Greetings, user.';
-$string['greetingloggedinuser'] = 'Greetings, {$a}';
+    $country = $user->country;
+    switch ($country) {
+        case 'ES':
+            $langstr = 'greetinguseres';
+            break;
+        case 'AU':
+            $langstr = 'greetinguserau';
+            break;
+        case 'FJ':
+            $langstr = 'greetinguserfj';
+            break;
+        case 'NZ':
+            $langstr = 'greetingusernz';
+            break;
+        case 'BD':
+            $langstr = 'greetinguserbd';
+            break;
+        default:
+            $langstr = 'greetingloggedinuser';
+            break;
+    }
 
-$string['greetinguserau'] = 'Hello, {$a}.';
-$string['greetinguseres'] = 'Hola, {$a}.';
-$string['greetinguserfj'] = 'Bula, {$a}.';
-$string['greetingusernz'] = 'Kia, Ora, {$a}.';
-$string['greetinguserbd'] = 'ওহে, {$a}.';
+    return get_string($langstr, 'local_greetings', fullname($user));
+}
