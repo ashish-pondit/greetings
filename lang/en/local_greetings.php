@@ -35,3 +35,4 @@ $string['greetinguserfj'] = 'Bula, {$a}.';
 $string['greetingusernz'] = 'Kia, Ora, {$a}.';
 $string['greetinguserbd'] = 'ওহে, {$a}.';
 $string['yourmessage'] = 'Enter your thoughts here ...';
+$string['postedby'] = 'Posted by {$a}';
