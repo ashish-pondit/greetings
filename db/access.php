@@ -15,27 +15,38 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin strings are defined here.
+ * Plugin version and other meta-data are defined here.
  *
  * @package     local_greetings
- * @category    string
  * @copyright   2024 Ashish Pondit <ashish.pondit@dsinnovators.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Greetings';
-$string['greetinguser'] = 'Greetings, user.';
-$string['greetingloggedinuser'] = 'Greetings, {$a}';
-
-$string['greetinguserau'] = 'Hello, {$a}.';
-$string['greetinguseres'] = 'Hola, {$a}.';
-$string['greetinguserfj'] = 'Bula, {$a}.';
-$string['greetingusernz'] = 'Kia, Ora, {$a}.';
-$string['greetinguserbd'] = 'ওহে, {$a}.';
-$string['yourmessage'] = 'Enter your thoughts here ...';
-$string['postedby'] = 'Posted by {$a}';
-$string['greetings:viewmessages'] = 'View messages on the greetings wall';
-$string['greetings:postmessages'] = 'Post a new message on the Greeting wall';
-$string['greetings:deleteanymessages'] = 'Delete a message from greeting wall';
+$capabilities = [
+    'local/greetings:postmessages' => [
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'user' => CAP_ALLOW,
+        ],
+    ],
+    'local/greetings:viewmessages' => [
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'user' => CAP_ALLOW,
+        ],
+    ],
+    'local/greetings:deleteanymessages' => [
+        'riskbitmask' => RISK_DATALOSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+                'user' => CAP_ALLOW,
+        ],
+    ],
+];
