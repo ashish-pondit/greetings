@@ -40,3 +40,5 @@ $string['greetings:viewmessages'] = 'View messages on the greetings wall';
 $string['greetings:postmessages'] = 'Post a new message on the Greeting wall';
 $string['greetings:deleteanymessages'] = 'Delete a message from greeting wall';
 $string['greetings:deleteownmessages'] = 'Delete own messages';
+$string['messagecardbgcolor'] = 'Message card color';
+$string['messagecardbgcolordesc'] = 'Background color of the message card';
