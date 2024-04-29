@@ -104,7 +104,7 @@ $allowview = has_capability('local/greetings:viewmessages', $context);
 if ($allowview) {
     $messages = $DB->get_records_sql($sql);
 
-    echo $OUTPUT->box_start('card_columns');
+    echo $OUTPUT->box_start('card-columns');
     $cardbackgroundcolor = get_config('local_greetings', 'messagecardbgcolor');
 
 
