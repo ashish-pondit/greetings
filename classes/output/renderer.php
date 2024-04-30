@@ -31,4 +31,9 @@ class renderer extends plugin_renderer_base{
         $data = $page->export_for_template($this);
         return parent::render_from_template('local_greetings/layout-test', $data);
     }
+
+    public function render_index_page($page): string {
+        $templatecontext = $page->export_for_template($this);
+        return parent::render_from_template('local_greetings/index', $templatecontext);
+    }
 }

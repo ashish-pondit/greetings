@@ -1,0 +1,27 @@
+<h6>{{greetingmessage}}</h6>
+<p>These are the notes that you have added.</p>
+
+<div class="" style="background-color: rgba(181,233,176,0.53)">
+    {{{messageform}}}
+</div>
+
+<div class="box py-3 card-columns">
+    {{#messageposts}}
+    <div class="card" style="background-color: {{cardbackgroundcolor}}">
+        <div class="card-body">
+            <p class="card-text">{{message}}</p>
+            <p class="card-text">Posted by {{firstname}}</p>
+            <p class="card-text">
+                <small class="text-muted">
+                    {{#userdate}}{{timecreated}}, {{#str}}strftimedate, core_langconfig{{/str}}{{/userdate}}
+                </small>
+            </p>
+            <p class="card-footer text-center">
+                <a href="{{baseurl}}?action=del&id={{id}}&sesskey={{sessionkey}}">
+                    <i class="icon fa fa-trash fa-fw " aria-hidden="true"></i>Delete
+                </a>
+            </p>
+        </div>
+    </div>
+    {{/messageposts}}
+</div>
