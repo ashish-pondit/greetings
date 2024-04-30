@@ -15,28 +15,31 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Renderable for the layout-test page
  *
  * @package     local_greetings
  * @copyright   2024 Ashish Pondit <ashish.pondit@dsinnovators.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace local_greetings\output;
+
+use renderable;
+use renderer_base;
+use templatable;
+use stdClass;
 
 require_once('../../config.php');
+require_once($CFG->dirroot. '/local/greetings/lib.php');
 
-$context = context_system::instance();
-$PAGE->set_context($context);
-$PAGE->set_url(new moodle_url('/local/greetings/layout-test.php'));
-$PAGE->set_pagelayout('login');
+class layout_test_page implements renderable, templatable{
+    public function __construct($sometext) {
+        $this->sometext = $sometext;
+    }
 
-$PAGE->set_title(get_string('pluginname', 'local_greetings'));
-$PAGE->set_heading(get_string('pluginname', 'local_greetings'));
+    public function export_for_template(renderer_base $output): stdClass {
+        $data = new stdClass();
+        $data->sometext = $this->sometext;
 
-$output = $PAGE->get_renderer('local_greetings');
-echo $output->header();
-// Your content goes here. We will just echo some HTML for simplicity.
-$sometext = 'Here is some content but it can be anything else, too.';
-$renderable = new \local_greetings\output\layout_test_page($sometext);
-
-echo $output->render($renderable);
-echo $output->footer();
+        return $data;
+    }
+}

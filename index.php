@@ -79,7 +79,9 @@ if ($data = $messageform->get_data()) {
     }
 }
 
-echo $OUTPUT->header();
+$output = $PAGE->get_renderer('local_greetings');
+
+echo $output->header();
 if (isloggedin()) {
     echo local_greetings_get_greeting($USER);
 } else {
@@ -104,7 +106,7 @@ $allowview = has_capability('local/greetings:viewmessages', $context);
 if ($allowview) {
     $messages = $DB->get_records_sql($sql);
 
-    echo $OUTPUT->box_start('card-columns');
+    echo $output->box_start('card-columns');
     $cardbackgroundcolor = get_config('local_greetings', 'messagecardbgcolor');
 
 
@@ -123,7 +125,7 @@ if ($allowview) {
                             '/local/greetings/index.php',
                             ['action' => 'del', 'id' => $m->id, 'sesskey' => sesskey()]
                     ),
-                    $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
+                    $output->pix_icon('t/delete', '') . get_string('delete')
             );
             echo html_writer::end_tag('p');
         }
@@ -131,7 +133,7 @@ if ($allowview) {
         echo html_writer::end_tag('div');
     }
 
-    echo $OUTPUT->box_end();
+    echo $output->box_end();
 }
 
-echo $OUTPUT->footer();
+echo $output->footer();

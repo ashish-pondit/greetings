@@ -22,21 +22,13 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../config.php');
+namespace local_greetings\output;
 
-$context = context_system::instance();
-$PAGE->set_context($context);
-$PAGE->set_url(new moodle_url('/local/greetings/layout-test.php'));
-$PAGE->set_pagelayout('login');
+use plugin_renderer_base;
 
-$PAGE->set_title(get_string('pluginname', 'local_greetings'));
-$PAGE->set_heading(get_string('pluginname', 'local_greetings'));
-
-$output = $PAGE->get_renderer('local_greetings');
-echo $output->header();
-// Your content goes here. We will just echo some HTML for simplicity.
-$sometext = 'Here is some content but it can be anything else, too.';
-$renderable = new \local_greetings\output\layout_test_page($sometext);
-
-echo $output->render($renderable);
-echo $output->footer();
+class renderer extends plugin_renderer_base{
+    public function render_layout_test_page($page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('local_greetings/layout-test', $data);
+    }
+}
