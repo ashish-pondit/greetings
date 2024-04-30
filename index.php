@@ -37,6 +37,18 @@ if (isguestuser()) {
 }
 
 $output = $PAGE->get_renderer('local_greetings');
+
+$previewnode = $PAGE->navigation->add(
+        get_string('pluginname', 'local_greetings'),
+        new moodle_url('/local/greetings/index.php'),
+        navigation_node::TYPE_CONTAINER
+);
+$thingnode = $previewnode->add(
+        'Index Page',
+        new moodle_url('')
+);
+$thingnode->make_active();
+
 echo $output->header();
 
 $renderable = new \local_greetings\output\index_page($PAGE, $USER);
