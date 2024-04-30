@@ -81,3 +81,13 @@ function local_greetings_extend_navigation(global_navigation $root) {
 
     $root->add_node($node);
 }
+
+function local_greetings_extend_navigation_course(navigation_node $node) {
+    if (isloggedin() && !isguestuser()) {
+        $node->add(
+                get_string('pluginname', 'local_greetings'),
+                new moodle_url('/local/greetings/index.php'),
+                navigation_node::TYPE_CUSTOM
+        );
+    }
+}
