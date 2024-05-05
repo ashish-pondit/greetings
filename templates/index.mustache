@@ -25,3 +25,9 @@
     </div>
     {{/messageposts}}
 </div>
+
+{{#js}}
+    require(['local_greetings/helloworld'], (module)=>{
+        module.init();
+    });
+{{/js}}
